@@ -5,11 +5,20 @@
 }
 
 <h2>Garage Overview</h2>
+<h4 id="ParkingSpots">Currently free parking spots: <span class="badge">@TempData["NrOfFreeSpots"]</span> of <span class="badge">@TempData["GarageSize"]</span></h4>
 @if (TempData["Message"] != null)
 {
     <div class="TempData alert alert-success ">
         <h4>
             @TempData["Message"]
+        </h4>
+    </div>
+}
+@if (TempData["TooFewParkingSpots"] != null)
+{
+    <div class="TempData alert alert-danger ">
+        <h4>
+            @TempData["TooFewParkingSpots"]
         </h4>
     </div>
 }
