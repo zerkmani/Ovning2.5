@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Garage2._0.Models.Vechicle>
+
+@{
+    ViewBag.Title = "Garage Overview";
+}
+
+<h2>Garage Overview</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                Reg Nr:
+                @Html.TextBox("regNo")
+                <select name="vehicleType">
+                    <option value="Exclude"></option>
+                    <option value="Car">Car</option>
+                    <option value="Bus">Bus</option>
+                    <option value="Boat">Boat</option>
+                    <option value="Airplane">Airplane</option>
+                    <option value="Motorcycle">Motorcycle</option>
+                </select>
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>Member
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vehicleType.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegNo)
+        </th>
+        
+       
+        <th>
+            @Html.DisplayNameFor(model => model.ParkingTime)
+        </th>
+        
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GarageMember.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vehicleType.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegNo)
+        </td>
+       
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.ParkingTime)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Check Out", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

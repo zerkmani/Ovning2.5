@@ -1,0 +1,115 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Garage 2.0</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+  
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Garage 2.0", "Index", "Vechicles", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <form class="navbar-form navbar-left" col-md-6>
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Main window", "Index")</li>
+                        <li>@Html.ActionLink("Check in", "CheckIn")</li>
+                        <li>@Html.ActionLink("Garage statistics", "Statistics")</li>
+                        <li>@Html.ActionLink("Advanced search", "Search")</li>
+                    </ul>
+
+                
+                    
+
+                        @*<div class="input-group">
+                            <div class="input-group-btn">
+                             @using (Html.BeginForm())
+                             {
+                            @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Search" })
+                                <button class="btn btn-default" input type="submit">Search</button>
+                    }           
+                            </div>
+                        </div>
+                
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>*@
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Garage 2.5", "Index", "Members", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Members Main Window", "Index", "Members")<span class="sr-only">(current)</span></li>
+                    <li>@Html.ActionLink("Check in new vehicle", "Create", "Vechicles1")<span class="sr-only">(current)</span></li>
+                    <li>@Html.ActionLink("Garage statistics", "Statistics", "Vechicles1")<span class="sr-only">(current)</span></li>
+                    <li>@Html.ActionLink("Garage Overview", "Index", "Vechicles1")</li>
+                    <li>@Html.ActionLink("Garage Detailed Overview", "Detailed", "Vechicles1")</li>
+
+                </ul>
+
+                @*<form class="navbar-form nav navbar-right">
+                    @*<div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Search" })
+                                <button class="btn btn-default" input type="submit">Search</button>
+                            }
+                        </div>
+                    </div>
+                </form>*@
+
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+        
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <h3>@ViewBag.Message</h3>
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year Cornelia, Dimitris and Johan S</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

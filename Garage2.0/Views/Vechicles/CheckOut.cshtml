@@ -1,0 +1,79 @@
+﻿@model Garage2._0.Models.Vechicle
+
+@{
+    ViewBag.Title = "CheckOut";
+}
+
+<h2>Checkout vehicle</h2>
+
+<h4>Are you sure you want to check out vehicle?</h4>
+<div>
+    <hr />
+    <h4>Vechicle details:</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VechicleType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VechicleType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+        <dt>
+            @Html.Raw("Number of wheels")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NrOfWeels)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.Raw("Entered the garage at")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParkingTime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Check out vehicle" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
