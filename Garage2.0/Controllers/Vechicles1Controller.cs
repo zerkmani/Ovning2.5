@@ -14,11 +14,16 @@ namespace Garage2._0.Controllers
     public class Vechicles1Controller : Controller
     {
         private VehicleDbContext db = new VehicleDbContext();
+        const int GarageSize = 11;  //hardcoded garagesize
 
         // GET: Vechicles1
         public ActionResult Index()
         {
-            
+            int NrOfFreeSpots = GarageSize - db.Vehicles.Count();
+
+            TempData["GarageSize"] = GarageSize;
+            TempData["NrOfFreeSpots"] = NrOfFreeSpots;
+
             var vehicles = db.Vehicles.Include(v => v.GarageMember).Include(v => v.vehicleType);
             
             return View(vehicles.ToList());
@@ -29,8 +34,11 @@ namespace Garage2._0.Controllers
         {
             //ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "Id", "Type", vechicle.VehicleTypeId);
             //var vehicles = db.Vehicles.Include(v => v.GarageMember).Include(v => v.vehicleType);
-                      
-       
+            int NrOfFreeSpots = GarageSize - db.Vehicles.Count();
+
+            TempData["GarageSize"] = GarageSize;
+            TempData["NrOfFreeSpots"] = NrOfFreeSpots;
+
             var searchResult = db.Vehicles.ToList();
 
             //if (vehicleType != "Exclude")
@@ -50,6 +58,11 @@ namespace Garage2._0.Controllers
 
         public ActionResult Detailed()
         {
+            int NrOfFreeSpots = GarageSize - db.Vehicles.Count();
+
+            TempData["GarageSize"] = GarageSize;
+            TempData["NrOfFreeSpots"] = NrOfFreeSpots;
+
             var vehicles = db.Vehicles.Include(v => v.GarageMember).Include(v => v.vehicleType);
             return View(vehicles.ToList());
         }
@@ -57,7 +70,12 @@ namespace Garage2._0.Controllers
         [HttpPost]
         public ActionResult Detailed(string regNo, string vehicleType = "Exclude")
         {
-                        
+
+            int NrOfFreeSpots = GarageSize - db.Vehicles.Count();
+
+            TempData["GarageSize"] = GarageSize;
+            TempData["NrOfFreeSpots"] = NrOfFreeSpots;
+
             var searchResult = db.Vehicles.ToList();
 
             if (!String.IsNullOrEmpty(regNo))
@@ -86,6 +104,21 @@ namespace Garage2._0.Controllers
         // GET: Vechicles1/Create
         public ActionResult CheckIn()
         {
+            int NrOfFreeSpots = GarageSize - db.Vehicles.Count();
+
+            TempData["GarageSize"] = GarageSize;
+            TempData["NrOfFreeSpots"] = NrOfFreeSpots;
+
+            int vehiclescounter = db.Vehicles.Count();
+            if (vehiclescounter >= GarageSize) //error check for the garage size 
+            {
+                //break indexing and send message to client to resize the garage constant in visual studio for now
+                var Fullmodel = db.Vehicles;
+                //ViewBag.Message = "The garage is full. Check out some vehicles";
+                TempData["TooFewParkingSpots"] = "The garage is full. Check out some vehicles";
+                return RedirectToAction("Index");
+            }
+
             ViewBag.MemberId = new SelectList(db.Members, "Id", "Name");
             ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "Id", "Type");
             return View();
@@ -98,6 +131,11 @@ namespace Garage2._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CheckIn([Bind(Include = "Id,RegNo,Color,Brand,NrOfWeels,Model,VehicleTypeId,MemberId")] Vechicle vechicle)
         {
+            int NrOfFreeSpots = GarageSize - db.Vehicles.Count();
+
+            TempData["GarageSize"] = GarageSize;
+            TempData["NrOfFreeSpots"] = NrOfFreeSpots;
+
             vechicle.ParkingTime = DateTime.Now;
             //behövs kontroll av att regnr inte redan existerar. 
             var tempRegNo = vechicle.RegNo;
@@ -115,6 +153,7 @@ namespace Garage2._0.Controllers
             {
                 db.Vehicles.Add(vechicle);
                 db.SaveChanges();
+                TempData["Message"] = "Vehicle checked in.";
                 return RedirectToAction("Index");
             }
 
