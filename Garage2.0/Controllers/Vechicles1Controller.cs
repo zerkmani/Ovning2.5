@@ -14,7 +14,7 @@ namespace Garage2._0.Controllers
     public class Vechicles1Controller : Controller
     {
         private VehicleDbContext db = new VehicleDbContext();
-        const int GarageSize = 11;  //hardcoded garagesize
+        const int GarageSize = 20;  //hardcoded garagesize
 
         // GET: Vechicles1
         public ActionResult Index()

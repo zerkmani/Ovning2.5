@@ -163,14 +163,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\Vechicles1Controller.cs" />
-    <Compile Include="Controllers\VechiclesController.cs" />
     <Compile Include="DAL\VehicleDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610270855057_Final.cs" />
-    <Compile Include="Migrations\201610270855057_Final.Designer.cs">
-      <DependentUpon>201610270855057_Final.cs</DependentUpon>
+    <Compile Include="Migrations\201610271202587_finalversion.cs" />
+    <Compile Include="Migrations\201610271202587_finalversion.Designer.cs">
+      <DependentUpon>201610271202587_finalversion.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Member.cs" />
@@ -223,15 +222,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Vechicles\CheckIn.cshtml" />
-    <Content Include="Views\Vechicles\CheckOut.cshtml" />
-    <Content Include="Views\Vechicles\Details.cshtml" />
-    <Content Include="Views\Vechicles\Edit.cshtml" />
-    <Content Include="Views\Vechicles\Index.cshtml" />
-    <Content Include="Views\Vechicles\CheckOutConfirmed.cshtml" />
-    <Content Include="Views\Vechicles\Statistics.cshtml" />
-    <Content Include="Views\Vechicles\Search.cshtml" />
-    <Content Include="Views\Vechicles\SearchResult.cshtml" />
     <Content Include="Views\Members\Create.cshtml" />
     <Content Include="Views\Members\Delete.cshtml" />
     <Content Include="Views\Members\Details.cshtml" />
@@ -258,8 +248,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610270855057_Final.resx">
-      <DependentUpon>201610270855057_Final.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610271202587_finalversion.resx">
+      <DependentUpon>201610271202587_finalversion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

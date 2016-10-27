@@ -41,6 +41,7 @@ namespace Garage2._0.Models
         [StringLength(30)]
         public string Model { get; set; }
 
+        [Display(Name ="Vehicle type")] //denna går ej igenom. adrian lyckades inte heller.
         public int VehicleTypeId { get; set; }
         public virtual VehicleType vehicleType { get; set; }
 

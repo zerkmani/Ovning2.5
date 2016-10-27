@@ -47,49 +47,56 @@
         </div>
     </div>
 }
-<table class="table">
-    <tr>
-        <th>Member
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.vehicleType.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RegNo)
-        </th>
-        
-       
-        <th>
-            @Html.DisplayNameFor(model => model.ParkingTime)
-        </th>
-        
-        
-        <th></th>
-    </tr>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Overview</h3>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                Member
+            </th>
+            <th>
+                @Html.Raw("Vehicle type")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegNo)
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GarageMember.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.vehicleType.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegNo)
-        </td>
-       
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.ParkingTime)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Check Out", "CheckOut", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+            <th>
+                @Html.DisplayNameFor(model => model.ParkingTime)
+            </th>
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GarageMember.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vehicleType.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegNo)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParkingTime)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Check Out", "CheckOut", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

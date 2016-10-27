@@ -3,7 +3,7 @@ namespace Garage2._0.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Final : DbMigration
+    public partial class finalversion : DbMigration
     {
         public override void Up()
         {
@@ -12,7 +12,7 @@ namespace Garage2._0.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
