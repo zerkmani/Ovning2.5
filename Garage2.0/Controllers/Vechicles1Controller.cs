@@ -115,7 +115,7 @@ namespace Garage2._0.Controllers
                 //break indexing and send message to client to resize the garage constant in visual studio for now
                 var Fullmodel = db.Vehicles;
                 //ViewBag.Message = "The garage is full. Check out some vehicles";
-                TempData["TooFewParkingSpots"] = "The garage is full. Check out some vehicles";
+                TempData["TooFewParkingSpots"] = "The garage is full. Check out some vehicles.";
                 return RedirectToAction("Index");
             }
 
