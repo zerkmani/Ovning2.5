@@ -115,6 +115,7 @@ namespace Garage2._0.Controllers
             {
                 db.Vehicles.Add(vechicle);
                 db.SaveChanges();
+                TempData["Message"] = "Vehicle checked in.";
                 return RedirectToAction("Index");
             }
 

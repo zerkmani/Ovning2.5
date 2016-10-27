@@ -5,10 +5,19 @@
 }
 
 <h2>Garage Overview</h2>
+@if (TempData["Message"] != null)
+{
+    <div class="TempData alert alert-success ">
+        <h4>
+            @TempData["Message"]
+        </h4>
+    </div>
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
+    
     <div class="form-horizontal">
 
         <div class="form-group">
