@@ -29,17 +29,16 @@ namespace Garage2._0.Controllers
         {
             //ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "Id", "Type", vechicle.VehicleTypeId);
             //var vehicles = db.Vehicles.Include(v => v.GarageMember).Include(v => v.vehicleType);
-           var temp = regNo.ToUpper();
-            
+                      
        
             var searchResult = db.Vehicles.ToList();
 
             //if (vehicleType != "Exclude")
             //    searchResult = searchResult.Where(v => v.VechicleType.ToString() == vehicleType.ToString()).ToList();
+            //x.Name.ToLower().Contains(SearchValue.ToLower())
 
-  
-            if (!String.IsNullOrEmpty(temp))
-                searchResult = searchResult.Where(v => v.RegNo.Contains(temp)).ToList();
+            if (!String.IsNullOrEmpty(regNo))
+                searchResult = searchResult.Where(v => v.RegNo.ToUpper().Contains(regNo.ToUpper())).ToList();
             if (vehicleType != "Exclude")
                 searchResult = searchResult.Where(v => v.vehicleType.Type.ToString() == vehicleType.ToString()).ToList(); 
 
@@ -58,12 +57,11 @@ namespace Garage2._0.Controllers
         [HttpPost]
         public ActionResult Detailed(string regNo, string vehicleType = "Exclude")
         {
-            var temp = regNo.ToUpper();
-            
+                        
             var searchResult = db.Vehicles.ToList();
 
-            if (!String.IsNullOrEmpty(temp))
-                searchResult = searchResult.Where(v => v.RegNo.Contains(temp)).ToList();
+            if (!String.IsNullOrEmpty(regNo))
+                searchResult = searchResult.Where(v => v.RegNo.ToUpper().Contains(regNo.ToUpper())).ToList();
             if (vehicleType != "Exclude")
                 searchResult = searchResult.Where(v => v.vehicleType.Type.ToString() == vehicleType.ToString()).ToList();
             return View(searchResult);
@@ -86,7 +84,7 @@ namespace Garage2._0.Controllers
         }
 
         // GET: Vechicles1/Create
-        public ActionResult Create()
+        public ActionResult CheckIn()
         {
             ViewBag.MemberId = new SelectList(db.Members, "Id", "Name");
             ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "Id", "Type");
@@ -98,7 +96,7 @@ namespace Garage2._0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RegNo,Color,Brand,NrOfWeels,Model,VehicleTypeId,MemberId")] Vechicle vechicle)
+        public ActionResult CheckIn([Bind(Include = "Id,RegNo,Color,Brand,NrOfWeels,Model,VehicleTypeId,MemberId")] Vechicle vechicle)
         {
             vechicle.ParkingTime = DateTime.Now;
             //behövs kontroll av att regnr inte redan existerar. 
@@ -161,7 +159,7 @@ namespace Garage2._0.Controllers
         }
 
         // GET: Vechicles1/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult CheckOut(int? id)
         {
             if (id == null)
             {
@@ -176,14 +174,41 @@ namespace Garage2._0.Controllers
         }
 
         // POST: Vechicles1/Delete/5
-        [HttpPost, ActionName("Delete")]
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Vechicle vechicle = db.Vehicles.Find(id);
+        //    db.Vehicles.Remove(vechicle);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        [HttpPost, ActionName("CheckOut")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult CheckOutConfirmed(int id)
         {
-            Vechicle vechicle = db.Vehicles.Find(id);
-            db.Vehicles.Remove(vechicle);
+            ReciptViewModel recieptModel;
+            Vechicle vehicle = db.Vehicles.Find(id);
+            var checkOutTime = DateTime.Now;
+            TimeSpan hours = checkOutTime - vehicle.ParkingTime;
+            var parkedMin = hours.TotalMinutes;
+            var cost = 1 * Convert.ToInt32(parkedMin);
+            var hour = hours.TotalHours;
+
+            recieptModel = new ReciptViewModel()
+            {
+                RegNo = vehicle.RegNo,
+                CheckInTime = vehicle.ParkingTime,
+                CheckOutTime = checkOutTime,
+                ParkedHour = Convert.ToInt32(hour),
+                ParkingCost = cost
+            };
+
+            db.Vehicles.Remove(vehicle);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return View("CheckOutConfirmed", recieptModel);
+
         }
 
         public ActionResult Statistics()

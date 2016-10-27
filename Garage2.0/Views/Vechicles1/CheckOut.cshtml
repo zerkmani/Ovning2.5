@@ -1,12 +1,12 @@
 ﻿@model Garage2._0.Models.Vechicle
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Check out";
 }
 
-<h2>Delete</h2>
+<h2>Checkout vehicle</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h4>Are you sure you want to check out vehicle?</h4>
 <div>
     <h4>Vechicle</h4>
     <hr />
@@ -52,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ParkingTime)
+            @Html.Raw("Entered the garage at")
         </dt>
 
         <dd>
@@ -81,7 +81,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Check out vehicle" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

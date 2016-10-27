@@ -168,9 +168,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610270745206_version10.cs" />
-    <Compile Include="Migrations\201610270745206_version10.Designer.cs">
-      <DependentUpon>201610270745206_version10.cs</DependentUpon>
+    <Compile Include="Migrations\201610270855057_Final.cs" />
+    <Compile Include="Migrations\201610270855057_Final.Designer.cs">
+      <DependentUpon>201610270855057_Final.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Member.cs" />
@@ -237,13 +237,14 @@
     <Content Include="Views\Members\Details.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
-    <Content Include="Views\Vechicles1\Create.cshtml" />
-    <Content Include="Views\Vechicles1\Delete.cshtml" />
+    <Content Include="Views\Vechicles1\CheckIn.cshtml" />
+    <Content Include="Views\Vechicles1\CheckOut.cshtml" />
     <Content Include="Views\Vechicles1\Details.cshtml" />
     <Content Include="Views\Vechicles1\Edit.cshtml" />
     <Content Include="Views\Vechicles1\Index.cshtml" />
     <Content Include="Views\Vechicles1\Detailed.cshtml" />
     <Content Include="Views\Vechicles1\Statistics.cshtml" />
+    <Content Include="Views\Vechicles1\CheckOutConfirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -257,8 +258,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610270745206_version10.resx">
-      <DependentUpon>201610270745206_version10.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610270855057_Final.resx">
+      <DependentUpon>201610270855057_Final.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

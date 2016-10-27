@@ -1,0 +1,58 @@
+﻿@model Garage2._0.Models.ReciptViewModel
+
+@{
+    ViewBag.Title = "CheckOutConfirmed";
+}
+
+<h2>CheckOutConfirmed</h2>
+
+<div>
+    <h4>ReciptViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RegNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckInTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckInTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckOutTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckOutTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParkedHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParkedHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParkingCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParkingCost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>

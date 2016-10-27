@@ -3,7 +3,7 @@ namespace Garage2._0.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class version10 : DbMigration
+    public partial class Final : DbMigration
     {
         public override void Up()
         {
